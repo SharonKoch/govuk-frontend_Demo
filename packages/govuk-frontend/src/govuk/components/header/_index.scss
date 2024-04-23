@@ -1,6 +1,6 @@
 @include govuk-exports("govuk/component/header") {
   $govuk-header-background: govuk-colour("black");
-  $govuk-header-border-color: $govuk-brand-colour;
+  $govuk-header-border-color: var(--govuk-brand-colour);
   $govuk-header-border-width: govuk-spacing(2);
   $govuk-header-text: govuk-colour("white");
   $govuk-header-link-active: #1d8feb;
@@ -16,7 +16,7 @@
   .govuk-header {
     @include govuk-font($size: 16, $line-height: 1);
 
-    border-bottom: govuk-spacing(2) solid govuk-colour("white");
+    border-bottom: govuk-spacing(2) solid var(--govuk-body-background-colour);
     color: $govuk-header-text;
     background: $govuk-header-background;
   }
@@ -99,6 +99,7 @@
     // - all links get a 3px underline regardless of text size, as there are
     //   multiple grouped elements close to one another and having slightly
     //   different underline widths looks unbalanced
+    @include govuk-link-colours;
     @include govuk-link-style-inverse;
 
     text-decoration: none;
@@ -305,7 +306,7 @@
       // When printing, use the normal blue as this contrasts better with the
       // white printing header
       @include govuk-media-query($media-type: print) {
-        color: $govuk-brand-colour;
+        color: var(--govuk-brand-colour);
       }
 
       // When focussed, the text colour needs to be darker to ensure that colour

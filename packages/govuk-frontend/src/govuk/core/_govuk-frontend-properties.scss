@@ -7,4 +7,6 @@
   @each $name, $value in $govuk-breakpoints {
     --govuk-frontend-breakpoint-#{$name}: #{govuk-px-to-rem($value)};
   }
+
+  --govuk-font-family: #{$govuk-font-family};
 }
