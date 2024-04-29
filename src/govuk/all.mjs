@@ -1,7 +1,6 @@
 /* eslint-disable no-new */
 
 import { version } from './common/govuk-frontend-version.mjs'
-import { isSupported } from './common/index.mjs'
 import { Accordion } from './components/accordion/accordion.mjs'
 import { Button } from './components/button/button.mjs'
 import { CharacterCount } from './components/character-count/character-count.mjs'
@@ -14,7 +13,6 @@ import { PasswordInput } from './components/password-input/password-input.mjs'
 import { Radios } from './components/radios/radios.mjs'
 import { SkipLink } from './components/skip-link/skip-link.mjs'
 import { Tabs } from './components/tabs/tabs.mjs'
-import { SupportError } from './errors/index.mjs'
 
 /**
  * Initialise all components
@@ -28,10 +26,10 @@ function initAll(config) {
   config = typeof config !== 'undefined' ? config : {}
 
   // Skip initialisation when GOV.UK Frontend is not supported
-  if (!isSupported()) {
-    console.log(new SupportError())
-    return
-  }
+  // if (!isSupported()) {
+  //   console.log(new SupportError())
+  //   return
+  // }
 
   const components = /** @type {const} */ ([
     [Accordion, config.accordion],
@@ -64,7 +62,7 @@ function initAll(config) {
           ? new Component($element, config)
           : new Component($element)
       } catch (error) {
-        console.log(error)
+        // console.log(error)
       }
     })
   })
