@@ -32,42 +32,6 @@ function initAll(config) {
     console.log(new SupportError())
     return
   }
-
-  const components = /** @type {const} */ ([
-    [Accordion, config.accordion],
-    [Button, config.button],
-    [CharacterCount, config.characterCount],
-    [Checkboxes],
-    [ErrorSummary, config.errorSummary],
-    [ExitThisPage, config.exitThisPage],
-    [Header],
-    [NotificationBanner, config.notificationBanner],
-    [PasswordInput, config.passwordInput],
-    [Radios],
-    [SkipLink],
-    [Tabs]
-  ])
-
-  // Allow the user to initialise GOV.UK Frontend in only certain sections of the page
-  // Defaults to the entire document if nothing is set.
-  const $scope = config.scope ?? document
-
-  components.forEach(([Component, config]) => {
-    const $elements = $scope.querySelectorAll(
-      `[data-module="${Component.moduleName}"]`
-    )
-
-    $elements.forEach(($element) => {
-      try {
-        // Only pass config to components that accept it
-        'defaults' in Component
-          ? new Component($element, config)
-          : new Component($element)
-      } catch (error) {
-        console.log(error)
-      }
-    })
-  })
 }
 
 export {
