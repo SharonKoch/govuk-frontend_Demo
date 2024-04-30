@@ -190,13 +190,14 @@ describe('packages/govuk-frontend/dist/', () => {
           import { NotificationBanner } from './components/notification-banner/notification-banner.mjs';
           import { PasswordInput } from './components/password-input/password-input.mjs';
           import { Radios } from './components/radios/radios.mjs';
+          import { ServiceHeader } from './components/service-header/service-header.mjs';
           import { SkipLink } from './components/skip-link/skip-link.mjs';
           import { Tabs } from './components/tabs/tabs.mjs';
         `)
 
         // Look for ES modules named exports
         expect(contents).toContain(
-          'export { Accordion, Button, CharacterCount, Checkboxes, ErrorSummary, ExitThisPage, Header, NotificationBanner, PasswordInput, Radios, SkipLink, Tabs, initAll };'
+          'export { Accordion, Button, CharacterCount, Checkboxes, ErrorSummary, ExitThisPage, Header, NotificationBanner, PasswordInput, Radios, ServiceHeader, SkipLink, Tabs, initAll };'
         )
       })
     })
