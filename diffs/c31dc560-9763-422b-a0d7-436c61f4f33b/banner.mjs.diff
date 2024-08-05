@@ -1,7 +1,6 @@
 --- original
 +++ remediated
-@@ -1,0 +1,1 @@
-+import url from 'url'
+@@ -0,0 +0,0 @@
  import express from 'express'
  
  const router = express.Router()
@@ -25,24 +24,31 @@
   * Save and redirect when app banner dismissed
   */
  router.post('/hide-banner', (req, res) => {
-   const maxAgeInDays = 28
-   const redirectURL = req.header('Referer')
- 
-   res.cookie(BANNER_COOKIE_NAME, 'yes', {
-     maxAge: maxAgeInDays * 24 * 60 * 60 * 1000,
-     httpOnly: true
-   })
- 
-   // Redirect to where the user POSTed from
-   // or default to the Review app home page
-@@ -34,1 +35,7 @@
+@@ -24,11 +24,14 @@
+-  const maxAgeInDays = 28
+-  const redirectURL = req.header('Referer')
+-
+-  res.cookie(BANNER_COOKIE_NAME, 'yes', {
+-    maxAge: maxAgeInDays * 24 * 60 * 60 * 1000,
+-    httpOnly: true
+-  })
+-
+-  // Redirect to where the user POSTed from
+-  // or default to the Review app home page
 -  res.redirect(redirectURL ?? '/')
 +    const redirectURL = req.header('Referer');
-+    const parsedURL = url.parse(redirectURL);
-+    if (parsedURL && parsedURL.host === null) {
-+      res.redirect(redirectURL ?? '/');
++    if (redirectURL && redirectURL.startsWith('/') && !redirectURL.startsWith('//') && !redirectURL.includes('://')) {
++      res.cookie(BANNER_COOKIE_NAME, 'yes', {
++        maxAge: maxAgeInDays * 24 * 60 * 60 * 1000,
++        httpOnly: true
++      });
++      res.redirect(redirectURL);
 +    } else {
-+      res.status(400).send('Invalid redirect URL.');
++      res.cookie(BANNER_COOKIE_NAME, 'yes', {
++        maxAge: maxAgeInDays * 24 * 60 * 60 * 1000,
++        httpOnly: true
++      });
++      res.redirect('/');
 +    }
  })
  
