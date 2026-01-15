@@ -89,7 +89,7 @@
     "typescript": "^5.4.3"
   },
   "optionalDependencies": {
-    "@actions/github": "^6.0.0",
+    "@actions/github": "^7.0.0",
     "@jest/environment": "^29.5.0",
     "@octokit/rest": "20.0.2",
     "@percy/core": "^1.28.2",
